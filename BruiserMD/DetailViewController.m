@@ -33,20 +33,20 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem)
-    {
-      _detailItem = newDetailItem;
-      [self.delegates addObject:self.detailItem];
-      //[self.delegates sayHello];
-      //NSLog(@"DV's delegates: %@",self.delegates);
-        // Update the view.
-      [self configureView];
-    }
+  if (_detailItem != newDetailItem)
+  {
+    _detailItem = newDetailItem;
+    [self.delegates addObject:self.detailItem];
+    //[self.delegates sayHello];
+    //NSLog(@"DV's delegates: %@",self.delegates);
+      // Update the view.
+    [self configureView];
+  }
 
-    if (self.masterPopoverController != nil)
-    {
-      [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+  if (self.masterPopoverController != nil)
+  {
+    [self.masterPopoverController dismissPopoverAnimated:YES];
+  }        
 }
 
 - (void)configureView
@@ -91,7 +91,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   [self configureView];
 }
@@ -106,16 +106,16 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
+  barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+  [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+  self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
+  // Called when the view is shown again in the split view, invalidating the button and popover controller.
+  [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+  self.masterPopoverController = nil;
 }
 
 #pragma mark - Handle Own Delegates
