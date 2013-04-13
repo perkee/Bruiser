@@ -28,12 +28,14 @@
   return self.title;
 }
 
--(void)detailViewDidUpdate
+-(void)detailViewDidUpdate:(UpdateChanges) changes
 {
-  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(tabDidUpdate)])
-  {
-    [self.delegate tabDidUpdate];
-  }
+  NSLog(@"Tab receives update %u",changes);
+  [self.delegates makeObjectsPerformSelector:@selector(tabDidUpdate:) withObject:[NSNumber numberWithInt:changes]];
+}
+-(void)addDelegate:(id<TabDelegate>)delegate
+{
+  [self.delegates addObject:delegate];
 }
 
 @end

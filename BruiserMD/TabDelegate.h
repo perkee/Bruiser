@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChangeTypes.h"
 
 @protocol TabDelegate <NSObject>
--(void)tabDidUpdate;
+-(void)tabDidUpdate:(NSNumber *) changes;
 @end

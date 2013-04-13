@@ -50,7 +50,7 @@
       _objects = [[NSMutableArray alloc] init];
   }
   Tab *newTab = [[Tab alloc] init];
-  [newTab setDelegate:self];
+  [newTab addDelegate:self];
   [_objects insertObject:newTab atIndex:0];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -128,8 +128,9 @@
     }
 }
 
--(void)tabDidUpdate
+-(void)tabDidUpdate:(NSNumber *)changes
 {
+  //it doesn't matter what kind of changes happened; we alway need to reload the TV
   [self.tableView reloadData];
 }
 @end

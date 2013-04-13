@@ -17,5 +17,5 @@
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
 @property (strong, nonatomic) IBOutlet UITextField *urlField;
 @property (strong, nonatomic) id<DetailViewDelegate> delegate;
--(void)updateDelegate;
+-(void)updateDelegate:(UpdateChanges) changes;
 @end

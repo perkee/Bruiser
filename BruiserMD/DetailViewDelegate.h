@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChangeTypes.h"
 
 @protocol DetailViewDelegate <NSObject>
-- (void) detailViewDidUpdate;
+- (void) detailViewDidUpdate:(UpdateChanges) changes;
 @end

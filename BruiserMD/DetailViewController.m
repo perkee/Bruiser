@@ -84,7 +84,7 @@
   NSString *title = [self.mainWebView stringByEvaluatingJavaScriptFromString:js];
   
   [self.detailItem setTitle:title];
-  [self updateDelegate];
+  [self updateDelegate:TitleChanged];
 }
 
 - (void)viewDidLoad
@@ -117,11 +117,11 @@
 }
 
 #pragma mark - Handle Own Delegates
--(void)updateDelegate
+-(void)updateDelegate:(UpdateChanges) changes
 {
-  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(detailViewDidUpdate)])
+  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(detailViewDidUpdate:)])
   {
-    [self.delegate detailViewDidUpdate];
+    [self.delegate detailViewDidUpdate:changes];
   }
 }
 

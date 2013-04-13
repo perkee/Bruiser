@@ -12,5 +12,6 @@
 
 @interface Tab : NSObject <DetailViewDelegate>
 @property (nonatomic,strong) NSString *title;
-@property (nonatomic,strong) id<TabDelegate> delegate;
+@property (nonatomic,strong) NSMutableSet *delegates;
+-(void) addDelegate:(id<TabDelegate>) delegate;
 @end
