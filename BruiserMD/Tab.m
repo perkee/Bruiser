@@ -12,32 +12,38 @@
 
 - (id) init
 {
-  if(self = [super init])
-  {
-    [self setTitle:@"New Tab"];
-    self.delegates = [NSMutableSet set];
-  }
-  else
-  {
-    self = nil;
-  }
-  return self;
+  return [self initWithDelegate:nil];
 }
 
 - (id) initWithDelegate:(id<TabDelegate>)delegate
+{
+  return [self initWithDelegate:delegate withAddress:nil];
+}
+
+- (id) initWithDelegate:(id<TabDelegate>)delegate withAddress:(NSString *)address
 {
   if(self = [super init])
   {
     [self setTitle:@"New Tab"];
     self.delegates = [NSMutableSet set];
-    [self addDelegate:delegate];
+    if(delegate != nil)
+    {
+      [self addDelegate:delegate];
+    }
+    if(address != nil)
+    {
+      [self setAddress:address];
+    }
   }
   else
   {
     self = nil;
   }
   return self;
+  
 }
+
+
 
 - (NSString *) description
 {

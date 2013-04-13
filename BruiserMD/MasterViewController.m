@@ -50,7 +50,8 @@
   {
     _objects = [[NSMutableArray alloc] init];
   }
-  Tab *newTab = [[Tab alloc] initWithDelegate:self];
+  //Tab *newTab = [[Tab alloc] initWithDelegate:self];
+  Tab *newTab = [[Tab alloc] initWithDelegate:self withAddress:@"http://perk.ee/code"];
   [_objects insertObject:newTab atIndex:0];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
