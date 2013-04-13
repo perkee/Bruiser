@@ -24,6 +24,21 @@
   return self;
 }
 
+- (id) initWithDelegate:(id<TabDelegate>)delegate
+{
+  if(self = [super init])
+  {
+    [self setTitle:@"New Tab"];
+    self.delegates = [NSMutableSet set];
+    [self addDelegate:delegate];
+  }
+  else
+  {
+    self = nil;
+  }
+  return self;
+}
+
 - (NSString *) description
 {
   return self.title;

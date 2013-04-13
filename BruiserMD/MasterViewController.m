@@ -49,8 +49,7 @@
   if (!_objects) {
       _objects = [[NSMutableArray alloc] init];
   }
-  Tab *newTab = [[Tab alloc] init];
-  [newTab addDelegate:self];
+  Tab *newTab = [[Tab alloc] initWithDelegate:self];
   [_objects insertObject:newTab atIndex:0];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

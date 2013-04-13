@@ -14,6 +14,6 @@
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSMutableSet *delegates;
 
-//-(id) initWithDelegate:(id<TabDelegate>) delegate;
+-(id) initWithDelegate:(id<TabDelegate>) delegate;
 -(void) addDelegate:(id<TabDelegate>) delegate;
 @end
