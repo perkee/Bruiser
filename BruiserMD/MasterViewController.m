@@ -19,11 +19,12 @@
 
 - (void)awakeFromNib
 {
-  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-      self.clearsSelectionOnViewWillAppear = NO;
-      self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+  {
+    self.clearsSelectionOnViewWillAppear = NO;
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
   }
-    [super awakeFromNib];
+  [super awakeFromNib];
 }
 
 - (void)viewDidLoad
@@ -34,6 +35,7 @@
   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
   self.navigationItem.rightBarButtonItem = addButton;
   self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+  self.detailViewController.urlField.delegate = self.detailViewController;
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,7 +130,6 @@
 
 -(void)tabDidUpdate
 {
-  NSLog(@"MV getting updated");
   [self.tableView reloadData];
 }
 @end

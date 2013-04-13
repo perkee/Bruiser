@@ -10,7 +10,7 @@
 #import "DetailViewDelegate.h"
 #import "Tab.h"
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate>
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

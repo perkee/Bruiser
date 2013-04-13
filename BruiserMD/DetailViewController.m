@@ -18,6 +18,19 @@
 
 #pragma mark - Managing the detail item
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+  if(self = [super initWithCoder:aDecoder])
+  {
+    //uh, what would work here?
+  }
+  else
+  {
+    self = nil;
+  }
+  return self;
+}
+
 - (void)setDetailItem:(id)newDetailItem
 {
     if (_detailItem != newDetailItem)
@@ -42,7 +55,7 @@
   {
     
     NSString *urlString = @"http://perk.ee";
-  
+    [self.urlField setDelegate:self];
     [self.mainWebView setDelegate:self];
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
     //self.urlField.text = [self.detailItem description];
@@ -103,13 +116,25 @@
     self.masterPopoverController = nil;
 }
 
-#pragma mark - Handle Delegates
+#pragma mark - Handle Own Delegates
 -(void)updateDelegate
 {
   if(self.delegate != nil && [self.delegate respondsToSelector:@selector(detailViewDidUpdate)])
   {
     [self.delegate detailViewDidUpdate];
   }
+}
+
+#pragma mark - UITextFieldDelegate methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  NSLog(@"text field resigned: %@",[textField resignFirstResponder] ? @"yup" : @"nope");
+  
+  return NO;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+  NSLog(@"text field ended: %@",textField.text);
 }
 
 @end
