@@ -15,6 +15,7 @@
   if(self = [super init])
   {
     [self setTitle:@"New Tab"];
+    self.delegates = [NSMutableSet set];
   }
   else
   {
@@ -28,10 +29,10 @@
   return self.title;
 }
 
--(void)detailViewDidUpdate:(UpdateChanges) changes
+-(void)detailViewDidUpdate:(NSNumber *)changes
 {
-  NSLog(@"Tab receives update %u",changes);
-  [self.delegates makeObjectsPerformSelector:@selector(tabDidUpdate:) withObject:[NSNumber numberWithInt:changes]];
+  NSLog(@"Tab DVC changes w/: %u = %@",[changes intValue],changes);
+  [self.delegates makeObjectsPerformSelector:@selector(tabDidUpdate:) withObject:changes];
 }
 -(void)addDelegate:(id<TabDelegate>)delegate
 {

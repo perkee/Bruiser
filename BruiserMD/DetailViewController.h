@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DetailViewDelegate.h"
 #import "Tab.h"
+#import "NSSet_makeObjectsPerformSelectorWithChangeTypes.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
@@ -16,6 +17,6 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
 @property (strong, nonatomic) IBOutlet UITextField *urlField;
-@property (strong, nonatomic) id<DetailViewDelegate> delegate;
--(void)updateDelegate:(UpdateChanges) changes;
+@property (strong, nonatomic) NSMutableSet *delegates;
+-(void)updateDelegates:(UpdateChanges) changes;
 @end

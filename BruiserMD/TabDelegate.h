@@ -10,5 +10,5 @@
 #import "ChangeTypes.h"
 
 @protocol TabDelegate <NSObject>
--(void)tabDidUpdate:(NSNumber *) changes;
+-(void)tabDidUpdate:(NSNumber *)changes;
 @end

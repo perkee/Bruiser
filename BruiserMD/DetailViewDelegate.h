@@ -10,5 +10,5 @@
 #import "ChangeTypes.h"
 
 @protocol DetailViewDelegate <NSObject>
-- (void) detailViewDidUpdate:(UpdateChanges) changes;
+- (void) detailViewDidUpdate:(NSNumber *) changes;
 @end

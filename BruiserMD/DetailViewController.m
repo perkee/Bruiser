@@ -22,7 +22,7 @@
 {
   if(self = [super initWithCoder:aDecoder])
   {
-    //uh, what would work here?
+    self.delegates = [NSMutableSet set];
   }
   else
   {
@@ -36,7 +36,9 @@
     if (_detailItem != newDetailItem)
     {
       _detailItem = newDetailItem;
-      self.delegate = self.detailItem;
+      [self.delegates addObject:self.detailItem];
+      //[self.delegates sayHello];
+      //NSLog(@"DV's delegates: %@",self.delegates);
         // Update the view.
       [self configureView];
     }
@@ -84,7 +86,7 @@
   NSString *title = [self.mainWebView stringByEvaluatingJavaScriptFromString:js];
   
   [self.detailItem setTitle:title];
-  [self updateDelegate:TitleChanged];
+  [self updateDelegates:TitleChanged];
 }
 
 - (void)viewDidLoad
@@ -117,12 +119,10 @@
 }
 
 #pragma mark - Handle Own Delegates
--(void)updateDelegate:(UpdateChanges) changes
+-(void)updateDelegates:(UpdateChanges)changes
 {
-  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(detailViewDidUpdate:)])
-  {
-    [self.delegate detailViewDidUpdate:changes];
-  }
+  NSLog(@"DVC updating with: %u",changes);
+  [self.delegates makeObjectsPerformSelector:@selector(detailViewDidUpdate:) withUpdateChanges:changes];
 }
 
 #pragma mark - UITextFieldDelegate methods
