@@ -1,5 +1,5 @@
 //
-//  DetailvViewDelegate.h
+//  DetailViewDelegate.h
 //  BruiserMD
 //
 //  Created by perkee on 4/13/13.

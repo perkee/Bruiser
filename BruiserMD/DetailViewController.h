@@ -21,4 +21,5 @@
 -(void)updateDelegates:(UpdateChanges) changes;
 
 -(void)navigate;
+- (void)navigateWithURLString:(NSString *)urlString;
 @end

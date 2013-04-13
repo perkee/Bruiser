@@ -60,15 +60,50 @@
   }
 }
 
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+  [self configureView];
+}
+
+- (void)didReceiveMemoryWarning
+{
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Split view
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+  barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+  [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+  self.masterPopoverController = popoverController;
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+  // Called when the view is shown again in the split view, invalidating the button and popover controller.
+  [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+  self.masterPopoverController = nil;
+}
+
 #pragma mark - Web Navigation
 
 - (void)navigate
 {
   [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.tab urlString]]]];
 }
+- (void)navigateWithURLString:(NSString *)urlString;
+{
+  [self.tab setUrlString:urlString];
+  [self navigate];
+}
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
+  NSLog(@"Start Load");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -91,35 +126,6 @@
   [self updateDelegates:TitleChanged];
 }
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  [self configureView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Split view
-
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-  barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-  [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-  self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-  // Called when the view is shown again in the split view, invalidating the button and popover controller.
-  [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-  self.masterPopoverController = nil;
-}
-
 #pragma mark - Handle Own Delegates
 -(void)updateDelegates:(UpdateChanges)changes
 {
@@ -136,7 +142,7 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-  NSLog(@"text field ended: %@",textField.text);
+  [self navigateWithURLString:textField.text];
 }
 
 @end
