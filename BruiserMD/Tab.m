@@ -12,10 +12,9 @@
 
 - (id) init
 {
-  
   if(self = [super init])
   {
-    [self setTitle:[[NSDate date] description]];
+    [self setTitle:@"New Tab"];
   }
   else
   {
@@ -26,7 +25,15 @@
 
 - (NSString *) description
 {
-  return [NSString stringWithFormat:@"NT: %@",self.title];
+  return self.title;
+}
+
+-(void)detailViewDidUpdate
+{
+  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(tabDidUpdate)])
+  {
+    [self.delegate tabDidUpdate];
+  }
 }
 
 @end

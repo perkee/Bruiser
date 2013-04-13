@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Tab.h"
-
+#import "TabDelegate.h"
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <TabDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

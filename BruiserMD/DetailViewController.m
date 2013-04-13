@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 
+
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -19,15 +20,17 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
+    if (_detailItem != newDetailItem)
+    {
+      _detailItem = newDetailItem;
+      self.delegate = self.detailItem;
         // Update the view.
-        [self configureView];
+      [self configureView];
     }
 
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
+    if (self.masterPopoverController != nil)
+    {
+      [self.masterPopoverController dismissPopoverAnimated:YES];
     }        
 }
 
@@ -37,16 +40,24 @@
 
   if (self.detailItem)
   {
-    NSString *urlString = @"http://perk.ee";
     
-    [self.webView setDelegate:self];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    self.urlField.text = [self.detailItem description];
+    NSString *urlString = @"http://perk.ee";
+  
+    [self.mainWebView setDelegate:self];
+    [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+    //self.urlField.text = [self.detailItem description];
+    self.urlField.text = urlString;
   }
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
+  [self.urlField setText:webView.request.URL.absoluteString];
+  
   NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
   NSString *css = [[NSString stringWithContentsOfFile:cssFile encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
   
@@ -55,12 +66,12 @@
                   "styleNode.type = \"text/css\";\n"
                   "var styleText = document.createTextNode(\"%@\");\n"
                   "styleNode.appendChild(styleText);\n"
-                  "document.getElementsByTagName('head')[0].appendChild(styleNode);\n",css];
+                  "document.getElementsByTagName('head')[0].appendChild(styleNode);\n"
+                  "document.title",css];
+  NSString *title = [self.mainWebView stringByEvaluatingJavaScriptFromString:js];
   
-  //NSLog(@"cssFile:\t%@",cssFile);
-  //NSLog(@"css:\t%@",css);
-  NSLog(@"js:\n%@",js);
-  NSLog(@"result:\t%@",[self.webView stringByEvaluatingJavaScriptFromString:js]);
+  [self.detailItem setTitle:title];
+  [self updateDelegate];
 }
 
 - (void)viewDidLoad
@@ -90,6 +101,15 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+#pragma mark - Handle Delegates
+-(void)updateDelegate
+{
+  if(self.delegate != nil && [self.delegate respondsToSelector:@selector(detailViewDidUpdate)])
+  {
+    [self.delegate detailViewDidUpdate];
+  }
 }
 
 @end

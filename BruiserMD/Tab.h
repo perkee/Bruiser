@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TabDelegate.h"
+#import "DetailViewDelegate.h"
 
-@interface Tab : NSObject
+@interface Tab : NSObject <DetailViewDelegate>
 @property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) id<TabDelegate> delegate;
 @end

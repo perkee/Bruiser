@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	NSLog(@"butt");
   self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
@@ -49,6 +48,7 @@
       _objects = [[NSMutableArray alloc] init];
   }
   Tab *newTab = [[Tab alloc] init];
+  [newTab setDelegate:self];
   [_objects insertObject:newTab atIndex:0];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -70,7 +70,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-  NSDate *object = _objects[indexPath.row];
+  Tab *object = _objects[indexPath.row];
   cell.textLabel.text = [object description];
     return cell;
 }
@@ -109,19 +109,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+      Tab *object = _objects[indexPath.row];
+      [self.detailViewController setDetailItem:object];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+    if ([[segue identifier] isEqualToString:@"showDetail"])
+    {
+      NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+      Tab *object = _objects[indexPath.row];
+      [[segue destinationViewController] setDetailItem:object];
     }
 }
 
+-(void)tabDidUpdate
+{
+  NSLog(@"MV getting updated");
+  [self.tableView reloadData];
+}
 @end
