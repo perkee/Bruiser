@@ -38,7 +38,6 @@
     _detailItem = newDetailItem;
     [self.delegates addObject:self.detailItem];
     //[self.delegates sayHello];
-    //NSLog(@"DV's delegates: %@",self.delegates);
       // Update the view.
     [self configureView];
   }
