@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86132B081719AE0400CF26FF /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 86132B071719AE0400CF26FF /* style.css */; };
 		8697F2B916F67198008B3014 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2B816F67198008B3014 /* UIKit.framework */; };
 		8697F2BB16F67198008B3014 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BA16F67198008B3014 /* Foundation.framework */; };
 		8697F2BD16F67198008B3014 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BC16F67198008B3014 /* CoreGraphics.framework */; };
@@ -20,9 +21,11 @@
 		8697F2D516F67198008B3014 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8697F2D316F67198008B3014 /* MainStoryboard_iPad.storyboard */; };
 		8697F2D816F67198008B3014 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8697F2D716F67198008B3014 /* MasterViewController.m */; };
 		8697F2DB16F67198008B3014 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8697F2DA16F67198008B3014 /* DetailViewController.m */; };
+		8697F2E316F67539008B3014 /* Tab.m in Sources */ = {isa = PBXBuildFile; fileRef = 8697F2E216F67539008B3014 /* Tab.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86132B071719AE0400CF26FF /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		8697F2B516F67198008B3014 /* BruiserMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BruiserMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8697F2B816F67198008B3014 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8697F2BA16F67198008B3014 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,6 +45,8 @@
 		8697F2D716F67198008B3014 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		8697F2D916F67198008B3014 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8697F2DA16F67198008B3014 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8697F2E116F67539008B3014 /* Tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tab.h; sourceTree = "<group>"; };
+		8697F2E216F67539008B3014 /* Tab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tab.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,8 @@
 				8697F2D316F67198008B3014 /* MainStoryboard_iPad.storyboard */,
 				8697F2D616F67198008B3014 /* MasterViewController.h */,
 				8697F2D716F67198008B3014 /* MasterViewController.m */,
+				8697F2E116F67539008B3014 /* Tab.h */,
+				8697F2E216F67539008B3014 /* Tab.m */,
 				8697F2D916F67198008B3014 /* DetailViewController.h */,
 				8697F2DA16F67198008B3014 /* DetailViewController.m */,
 				8697F2BF16F67198008B3014 /* Supporting Files */,
@@ -111,6 +118,7 @@
 				8697F2CA16F67198008B3014 /* Default.png */,
 				8697F2CC16F67198008B3014 /* Default@2x.png */,
 				8697F2CE16F67198008B3014 /* Default-568h@2x.png */,
+				86132B071719AE0400CF26FF /* style.css */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 				8697F2CF16F67198008B3014 /* Default-568h@2x.png in Resources */,
 				8697F2D216F67198008B3014 /* MainStoryboard_iPhone.storyboard in Resources */,
 				8697F2D516F67198008B3014 /* MainStoryboard_iPad.storyboard in Resources */,
+				86132B081719AE0400CF26FF /* style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +195,7 @@
 				8697F2C916F67198008B3014 /* AppDelegate.m in Sources */,
 				8697F2D816F67198008B3014 /* MasterViewController.m in Sources */,
 				8697F2DB16F67198008B3014 /* DetailViewController.m in Sources */,
+				8697F2E316F67539008B3014 /* Tab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +328,7 @@
 				8697F2E016F67198008B3014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

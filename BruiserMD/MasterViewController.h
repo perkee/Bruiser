@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tab.h"
 
 @class DetailViewController;
 

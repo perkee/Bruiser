@@ -35,9 +35,32 @@
 {
     // Update the user interface for the detail item.
 
-  if (self.detailItem) {
-      self.detailDescriptionLabel.text = [self.detailItem description];
+  if (self.detailItem)
+  {
+    NSString *urlString = @"http://perk.ee";
+    
+    [self.webView setDelegate:self];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+    self.urlField.text = [self.detailItem description];
   }
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+  NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
+  NSString *css = [[NSString stringWithContentsOfFile:cssFile encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+  
+  NSString* js = [NSString stringWithFormat:
+                  @"var styleNode = document.createElement('style');\n"
+                  "styleNode.type = \"text/css\";\n"
+                  "var styleText = document.createTextNode(\"%@\");\n"
+                  "styleNode.appendChild(styleText);\n"
+                  "document.getElementsByTagName('head')[0].appendChild(styleNode);\n",css];
+  
+  //NSLog(@"cssFile:\t%@",cssFile);
+  //NSLog(@"css:\t%@",css);
+  NSLog(@"js:\n%@",js);
+  NSLog(@"result:\t%@",[self.webView stringByEvaluatingJavaScriptFromString:js]);
 }
 
 - (void)viewDidLoad
