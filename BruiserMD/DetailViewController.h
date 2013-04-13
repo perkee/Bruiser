@@ -19,4 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *urlField;
 @property (strong, nonatomic) NSMutableSet *delegates;
 -(void)updateDelegates:(UpdateChanges) changes;
+
+-(void)navigate;
 @end

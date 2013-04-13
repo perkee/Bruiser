@@ -17,10 +17,10 @@
 
 - (id) initWithDelegate:(id<TabDelegate>)delegate
 {
-  return [self initWithDelegate:delegate withAddress:nil];
+  return [self initWithDelegate:delegate withURLString:nil];
 }
 
-- (id) initWithDelegate:(id<TabDelegate>)delegate withAddress:(NSString *)address
+- (id) initWithDelegate:(id<TabDelegate>)delegate withURLString:(NSString *)urlString
 {
   if(self = [super init])
   {
@@ -30,9 +30,9 @@
     {
       [self addDelegate:delegate];
     }
-    if(address != nil)
+    if(urlString != nil)
     {
-      [self setAddress:address];
+      [self setUrlString:urlString];
     }
   }
   else

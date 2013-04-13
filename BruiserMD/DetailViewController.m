@@ -54,14 +54,17 @@
 
   if (self.detailItem)
   {
-    
-    NSString *urlString = @"http://perk.ee";
     [self.urlField setDelegate:self];
     [self.mainWebView setDelegate:self];
-    [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    //self.urlField.text = [self.detailItem description];
-    self.urlField.text = urlString;
+    [self navigate];
   }
+}
+
+#pragma mark - Web Navigation
+
+- (void)navigate
+{
+  [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.detailItem urlString]]]];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
