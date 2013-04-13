@@ -46,8 +46,9 @@
 
 - (void)insertNewObject:(id)sender
 {
-  if (!_objects) {
-      _objects = [[NSMutableArray alloc] init];
+  if(!_objects)
+  {
+    _objects = [[NSMutableArray alloc] init];
   }
   Tab *newTab = [[Tab alloc] initWithDelegate:self];
   [_objects insertObject:newTab atIndex:0];
