@@ -93,12 +93,56 @@
 
 - (void)navigate
 {
-  [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.tab urlString]]]];
+  [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[self.tab url]]];
 }
-- (void)navigateWithURLString:(NSString *)urlString;
+-(void)navigateWithURL:(NSURL *)url
+{
+  [self.tab setUrl:url];
+  [self navigate];
+}
+
+-(void)navigateWithURLString:(NSString *)urlString
 {
   [self.tab setUrlString:urlString];
   [self navigate];
+}
+
+-(void)navigateWithString:(NSString *)string
+{
+  NSLog(@"Navigate to: %@",string);
+  NSString *encoded = [string  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  encoded = [encoded stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSURL *url;
+  if([encoded rangeOfString:@"."].location != NSNotFound)
+  {
+    NSLog(@"There is a period in  %@",encoded);
+    url = [NSURL URLWithString:encoded];
+    if(url.scheme && url.host)
+    {
+      NSLog(@"Good enc:   %@",url);
+    }
+    else
+    {
+      NSLog(@"Badd enc:   %@",url);
+      NSString *http = [NSString stringWithFormat:@"http://%@",encoded];
+      url = [NSURL URLWithString:http];
+      if(url.scheme && url.host)
+      {
+        NSLog(@"Good http: %@",url);
+      }
+      else
+      {
+        NSLog(@"Badd http: %@",url);
+      }
+    }
+  }
+  else
+  {
+    NSLog(@"There is no period in %@",encoded);
+    NSString *search = [string stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://duckduckgo.com?q=%@",search]];
+  }
+  [self navigateWithURL:url];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
@@ -129,20 +173,19 @@
 #pragma mark - Handle Own Delegates
 -(void)updateDelegates:(UpdateChanges)changes
 {
-  NSLog(@"DVC updating with: %u",changes);
+  //NSLog(@"DVC updating with: %u",changes);
   [self.delegates makeObjectsPerformSelector:@selector(detailViewDidUpdate:) withUpdateChanges:changes];
 }
 
 #pragma mark - UITextFieldDelegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-  NSLog(@"text field resigned: %@",[textField resignFirstResponder] ? @"yup" : @"nope");
-  
+  [textField resignFirstResponder];
   return NO;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-  [self navigateWithURLString:textField.text];
+  [self navigateWithString:textField.text];
 }
 
 @end

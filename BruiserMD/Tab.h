@@ -12,10 +12,13 @@
 
 @interface Tab : NSObject <DetailViewDelegate>
 @property (nonatomic,strong) NSString *title;
-@property (nonatomic,strong) NSString *urlString;
+@property (nonatomic,strong) NSURL *url;
 @property (nonatomic,strong) NSMutableSet *delegates;
 
 -(id) initWithDelegate:(id<TabDelegate>)delegate;
--(id) initWithDelegate:(id<TabDelegate>)delegate withURLString:(NSString *) urlString;
+-(id) initWithDelegate:(id<TabDelegate>)delegate withURLString:(NSString *)urlString;
+-(id) initWithDelegate:(id<TabDelegate>)delegate withURL:(NSURL *)url;
 -(void) addDelegate:(id<TabDelegate>)delegate;
+-(NSString *)urlString;
+-(void)setUrlString:(NSString *)string;
 @end

@@ -132,7 +132,7 @@
 -(void)tabDidUpdate:(NSNumber *)changes
 {
   //it doesn't matter what kind of changes happened; we alway need to reload the TV
-  NSLog(@"MVC Tab changes w/: %u = %@",[changes intValue],changes);
+  //NSLog(@"MVC Tab changes w/: %u = %@",[changes intValue],changes);
   [self.tableView reloadData];
 }
 @end
