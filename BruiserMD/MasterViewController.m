@@ -115,7 +115,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
       Tab *object = _objects[indexPath.row];
-      [self.detailViewController setDetailItem:object];
+      [self.detailViewController setTab:object];
     }
 }
 
@@ -125,7 +125,7 @@
     {
       NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
       Tab *object = _objects[indexPath.row];
-      [[segue destinationViewController] setDetailItem:object];
+      [[segue destinationViewController] setTab:object];
     }
 }
 

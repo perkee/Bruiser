@@ -31,12 +31,12 @@
   return self;
 }
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setTab:(id)newTab
 {
-  if (_detailItem != newDetailItem)
+  if (_tab != newTab)
   {
-    _detailItem = newDetailItem;
-    [self.delegates addObject:self.detailItem];
+    _tab = newTab;
+    [self.delegates addObject:self.tab];
     //[self.delegates sayHello];
       // Update the view.
     [self configureView];
@@ -52,7 +52,7 @@
 {
     // Update the user interface for the detail item.
 
-  if (self.detailItem)
+  if (self.tab)
   {
     [self.urlField setDelegate:self];
     [self.mainWebView setDelegate:self];
@@ -64,7 +64,7 @@
 
 - (void)navigate
 {
-  [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.detailItem urlString]]]];
+  [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.tab urlString]]]];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
@@ -87,7 +87,7 @@
                   "document.title",css];
   NSString *title = [self.mainWebView stringByEvaluatingJavaScriptFromString:js];
   
-  [self.detailItem setTitle:title];
+  [self.tab setTitle:title];
   [self updateDelegates:TitleChanged];
 }
 

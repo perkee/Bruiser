@@ -13,7 +13,7 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) id tab;
 
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
 @property (strong, nonatomic) IBOutlet UITextField *urlField;
