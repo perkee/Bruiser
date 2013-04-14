@@ -85,12 +85,12 @@
                             <rect key="frame" x="5" y="0.0" width="310" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Der-d1-pgV">
+                                <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Der-d1-pgV">
                                     <rect key="frame" x="222" y="0.0" width="45" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="More" backgroundImage="px.gif">
+                                    <state key="normal" title="More" backgroundImage="px.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
@@ -103,7 +103,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="Cancel" backgroundImage="px.gif">
+                                    <state key="normal" title="Cancel" backgroundImage="px.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
@@ -136,7 +136,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="px.gif" width="1" height="1"/>
+        <image name="px.png" width="1" height="1"/>
     </resources>
     <classes>
         <class className="DetailViewController" superclassName="UIViewController">

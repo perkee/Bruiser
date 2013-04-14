@@ -10,6 +10,7 @@
 #import "DetailViewDelegate.h"
 #import "Tab.h"
 #import "NSSet_makeObjectsPerformSelectorWithChangeTypes.h"
+#import "Debug.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
@@ -29,4 +30,6 @@
 -(void)navigateWithURLString:(NSString *)urlString;
 -(void)navigateWithURL:(NSURL *)url;
 -(void)navigateWithString:(NSString *) string;
+
+
 @end

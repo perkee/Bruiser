@@ -8,7 +8,6 @@
 
 #import "DetailViewController.h"
 
-
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -27,6 +26,8 @@
     self.moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.navBar = [UINavigationItem new];
     self.controlView = [UIView new];
+    
+    NSLog(@"iwc");
   }
   else
   {
@@ -42,7 +43,8 @@
     _tab = newTab;
     [self.delegates addObject:self.tab];
     //[self.delegates sayHello];
-      // Update the view.
+    // Update the view.
+    NSLog(@"setTab");
     [self configureView];
   }
 
@@ -60,10 +62,12 @@
   {
     [self.urlField setDelegate:self];
     self.restore = [self.urlField frame];
-    NSLog(@"URLF dimensions: %3.0f x %3.0f",self.restore.size.width,self.restore.size.height);
-    NSLog(@"URLF origin:     %3.0f x %3.0f",self.restore.origin.x,  self.restore.origin.y);
     [self.mainWebView setDelegate:self];
-    [self navigate];
+    
+    CGRect controlFrame = [self.controlView frame];
+    NSLog(@"init controlBlur:  %@",[Debug printRect:controlFrame]);
+    NSLog(@"init back width:  %f",[[self.navBar backBarButtonItem] width]);
+    
     self.urlField.text = [self.tab urlString];
     [self textFieldDidEndEditing:self.urlField];
   }
@@ -73,7 +77,8 @@
 {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  [self configureView];
+  //NSLog(@"viewDidLoad");
+  //[self configureView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,20 +204,52 @@
   self.navBar.hidesBackButton = YES;
   [self.cancelButton setHidden:NO];
   [self.moreButton setHidden:YES];
-  CGRect frame = self.controlView.frame;
-  NSLog(@"view: ( %3.0f, %3.0f) %3.0f x %3.0f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height);
-  frame.origin.x = 0.0;
-  frame.size.width = [[UIScreen mainScreen] bounds].size.width;
-  [self.controlView setFrame:frame];
+  CGRect controlFrame = self.controlView.frame;
+  NSLog(@"controlFocus: %@",[Debug printRect:controlFrame]);
+  controlFrame.origin.x = 0.0;
+  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width;
+  [self.controlView setFrame:controlFrame];
+  
+  CGRect cancelFrame = self.cancelButton.frame;
+  CGRect moreFrame   = self.moreButton.frame;
+  cancelFrame.size.width = moreFrame.size.width;
+  moreFrame.origin.x -= cancelFrame.size.width;
+  moreFrame.size.width = 0.0;
+  [self.moreButton setFrame:moreFrame];
+  [self.cancelButton setFrame:cancelFrame];
+  
+  CGRect urlFrame = self.urlField.frame;
+  urlFrame.size.width = controlFrame.size.width - cancelFrame.size.width;
+  NSLog(@"urlFocus:  %@",[Debug printRect:urlFrame]);
+  [self.urlField setFrame:urlFrame];
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
   self.navBar.hidesBackButton = NO;
   [self.cancelButton setHidden:YES];
   [self.moreButton setHidden:NO];
-  CGRect frame = self.cancelButton.frame;
-  frame.size.width = 0.0;
-  [self.cancelButton setFrame:frame];
+  
+  CGRect cancelFrame = self.cancelButton.frame;
+  CGRect moreFrame   = self.moreButton.frame;
+  moreFrame.origin.x += cancelFrame.size.width;
+  moreFrame.size.width = cancelFrame.size.width;
+  cancelFrame.size.width = 0.0;
+  [self.moreButton setFrame:moreFrame];
+  [self.cancelButton setFrame:cancelFrame];
+  //NSLog(@"more: %@",  [Debug printRect:moreFrame]);
+  //NSLog(@"cancel: %@",[Debug printRect:cancelFrame]);
+  
+  
+  CGRect controlFrame = self.controlView.frame;
+  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 60.00; //about width of "Tabs" button
+  [self.controlView setFrame:controlFrame];
+  NSLog(@"controlBlur:  %@",[Debug printRect:controlFrame]);
+  
+  CGRect urlFrame = self.urlField.frame;
+  urlFrame.size.width = controlFrame.size.width - moreFrame.size.width;
+  NSLog(@"urlBlur:  %@",[Debug printRect:urlFrame]);
+  [self.urlField setFrame:urlFrame];
+  
   [self navigateWithString:textField.text];
 }
 
