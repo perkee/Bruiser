@@ -15,21 +15,24 @@
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) id tab;
-
-@property (strong, nonatomic) IBOutlet UIView *controlView;
-@property (strong, nonatomic) IBOutlet UIButton *moreButton;
+//controls
+@property (strong, nonatomic) IBOutlet UIView           *controlView;
+@property (strong, nonatomic) IBOutlet UIButton         *moreButton;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navBar;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
-@property (strong, nonatomic) IBOutlet UITextField *urlField;
+@property (strong, nonatomic) IBOutlet UIButton         *cancelButton;
+@property (strong, nonatomic) IBOutlet UIWebView        *mainWebView;
+@property (strong, nonatomic) IBOutlet UITextField      *urlField;
+
+//delegate methods
 @property (strong, nonatomic) NSMutableSet *delegates;
-@property (nonatomic) CGRect restore;
 -(void)updateDelegates:(UpdateChanges) changes;
 
+//web navigation methods
 -(void)navigate;
--(void)navigateWithURLString:(NSString *)urlString;
 -(void)navigateWithURL:(NSURL *)url;
+-(void)navigateWithURLString:(NSString *)urlString;
 -(void)navigateWithString:(NSString *) string;
 
+//UI control methods
 
 @end
