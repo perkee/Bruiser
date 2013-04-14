@@ -100,11 +100,13 @@
                                         <action selector="cancel:" destination="21" eventType="touchUpInside" id="naS-nk-pFF"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Der-d1-pgV">
-                                    <rect key="frame" x="222" y="0.0" width="45" height="45"/>
+                                <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Der-d1-pgV" userLabel="More" colorLabel="IBBuiltInLabel-Red">
+                                    <rect key="frame" x="236" y="0.0" width="31" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                    <state key="normal" title="More">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="-10" maxX="1" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-4" maxY="2"/>
+                                    <state key="normal" title="≡">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
@@ -125,7 +127,7 @@
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="go"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="1" blue="0.22509444009999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         </view>
                     </navigationItem>
                     <connections>
@@ -151,6 +153,7 @@
             <relationships>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="more:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="controlView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mainWebView" candidateClass="UIWebView"/>

@@ -23,7 +23,7 @@
 {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    NSLog(@"DebugView init: %@",aDecoder);
+    //NSLog(@"DebugView init: %@",aDecoder);
   }
   return self;
 }

@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#define BUTTONWIDTH  ((CGFloat)45.0)
+#define BUTTONWIDTH  ((CGFloat)30.5)
 #define BUTTONHEIGHT ((CGFloat)45.0)
 
 
@@ -22,6 +22,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
+  //This is the one that's called; maybe all IB stuff uses coders? unsure.
   if(self = [super initWithCoder:aDecoder])
   {
     self.delegates = [NSMutableSet set];
@@ -31,7 +32,7 @@
     self.controlView = [UIView new];
     self.mainWebView = [UIWebView new];
     
-    NSLog(@"initWithCode");
+    //NSLog(@"DVC: initWithCoder");
   }
   else
   {
@@ -219,13 +220,14 @@
   CGRect urlFrame = self.urlField.frame;
   CGRect moreFrame    = self.moreButton.frame;
   CGRect cancelFrame  = self.cancelButton.frame;
+  /*
   NSLog(@"Unmodified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
         @"Control",[Debug printRect:controlFrame],
         @"URL"    ,[Debug printRect:urlFrame],
         @"more"   ,[Debug printRect:moreFrame],
         @"cancel" ,[Debug printRect:cancelFrame]
         );
-  
+  */
   //resize control view
   controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 20; //screen padding
   controlFrame.origin.x = 0.0;
@@ -247,13 +249,14 @@
   cancelFrame.size.height = buttonHeight;
   cancelFrame.origin.x    = controlFrame.size.width - buttonWidth;
   [self.cancelButton setFrame:cancelFrame];
-  
+  /*
   NSLog(@"Modified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
         @"Control",[Debug printRect:controlFrame],
         @"URL"    ,[Debug printRect:urlFrame],
         @"more"   ,[Debug printRect:moreFrame],
         @"cancel" ,[Debug printRect:cancelFrame]
         );
+  */
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -280,7 +283,7 @@
         );
   */
   //resize control view
-  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 70.00; //about width of "Tabs" button
+  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 66.00; //about width of "Tabs" button
   controlFrame.origin.x = 0.0;
   [self.controlView setFrame:controlFrame];
   
