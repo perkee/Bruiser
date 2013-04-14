@@ -23,6 +23,10 @@
   if(self = [super initWithCoder:aDecoder])
   {
     self.delegates = [NSMutableSet set];
+    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.navBar = [UINavigationItem new];
+    self.controlView = [UIView new];
   }
   else
   {
@@ -55,8 +59,13 @@
   if (self.tab)
   {
     [self.urlField setDelegate:self];
+    self.restore = [self.urlField frame];
+    NSLog(@"URLF dimensions: %3.0f x %3.0f",self.restore.size.width,self.restore.size.height);
+    NSLog(@"URLF origin:     %3.0f x %3.0f",self.restore.origin.x,  self.restore.origin.y);
     [self.mainWebView setDelegate:self];
     [self navigate];
+    self.urlField.text = [self.tab urlString];
+    [self textFieldDidEndEditing:self.urlField];
   }
 }
 
@@ -109,45 +118,47 @@
 
 -(void)navigateWithString:(NSString *)string
 {
-  NSLog(@"Navigate to: %@",string);
+  //NSLog(@"Navigate to: %@",string);
   NSString *encoded = [string  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   encoded = [encoded stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSURL *url;
   if([encoded rangeOfString:@"."].location != NSNotFound)
   {
-    NSLog(@"There is a period in  %@",encoded);
+    //NSLog(@"There is a period in  %@",encoded);
     url = [NSURL URLWithString:encoded];
     if(url.scheme && url.host)
     {
-      NSLog(@"Good enc:   %@",url);
+      //NSLog(@"Good enc:   %@",url.host);
     }
     else
     {
-      NSLog(@"Badd enc:   %@",url);
+      //NSLog(@"Badd enc:   %@",url);
       NSString *http = [NSString stringWithFormat:@"http://%@",encoded];
       url = [NSURL URLWithString:http];
       if(url.scheme && url.host)
       {
-        NSLog(@"Good http: %@",url);
+        //NSLog(@"Good http: %@",url.host);
       }
       else
       {
-        NSLog(@"Badd http: %@",url);
+        //NSLog(@"Badd http: %@",url.host);
       }
     }
   }
   else
   {
-    NSLog(@"There is no period in %@",encoded);
+    //NSLog(@"There is no period in %@",encoded);
     NSString *search = [string stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     url = [NSURL URLWithString:[NSString stringWithFormat:@"https://duckduckgo.com?q=%@",search]];
   }
   [self navigateWithURL:url];
 }
 
+#pragma mark - WebView Delegate Methods
+
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-  NSLog(@"Start Load");
+  //NSLog(@"Start Load");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -183,8 +194,25 @@
   [textField resignFirstResponder];
   return NO;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  self.navBar.hidesBackButton = YES;
+  [self.cancelButton setHidden:NO];
+  [self.moreButton setHidden:YES];
+  CGRect frame = self.controlView.frame;
+  NSLog(@"view: ( %3.0f, %3.0f) %3.0f x %3.0f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height);
+  frame.origin.x = 0.0;
+  frame.size.width = [[UIScreen mainScreen] bounds].size.width;
+  [self.controlView setFrame:frame];
+}
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+  self.navBar.hidesBackButton = NO;
+  [self.cancelButton setHidden:YES];
+  [self.moreButton setHidden:NO];
+  CGRect frame = self.cancelButton.frame;
+  frame.size.width = 0.0;
+  [self.cancelButton setFrame:frame];
   [self navigateWithString:textField.text];
 }
 
