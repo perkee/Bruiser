@@ -202,6 +202,7 @@
 {
   [textField resignFirstResponder];
   return NO;
+  //when this is called, textFieldDidEndEditing is called. Not in order, though. Weird.
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
