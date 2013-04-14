@@ -14,6 +14,8 @@
 		86132B18171A623800CF26FF /* px.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B17171A623800CF26FF /* px.png */; };
 		86132B1B171A847400CF26FF /* blu.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B19171A847400CF26FF /* blu.png */; };
 		86132B1C171A847400CF26FF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B1A171A847400CF26FF /* red.png */; };
+		86132B22171A8EFE00CF26FF /* DebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86132B21171A8EFE00CF26FF /* DebugView.m */; };
+		86132B25171A927600CF26FF /* DebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 86132B24171A927600CF26FF /* DebugWindow.m */; };
 		8697F2B916F67198008B3014 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2B816F67198008B3014 /* UIKit.framework */; };
 		8697F2BB16F67198008B3014 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BA16F67198008B3014 /* Foundation.framework */; };
 		8697F2BD16F67198008B3014 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BC16F67198008B3014 /* CoreGraphics.framework */; };
@@ -43,6 +45,10 @@
 		86132B17171A623800CF26FF /* px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = px.png; sourceTree = "<group>"; };
 		86132B19171A847400CF26FF /* blu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blu.png; sourceTree = "<group>"; };
 		86132B1A171A847400CF26FF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		86132B20171A8EFE00CF26FF /* DebugView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugView.h; sourceTree = "<group>"; };
+		86132B21171A8EFE00CF26FF /* DebugView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugView.m; sourceTree = "<group>"; };
+		86132B23171A927600CF26FF /* DebugWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugWindow.h; sourceTree = "<group>"; };
+		86132B24171A927600CF26FF /* DebugWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugWindow.m; sourceTree = "<group>"; };
 		8697F2B516F67198008B3014 /* BruiserMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BruiserMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8697F2B816F67198008B3014 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8697F2BA16F67198008B3014 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,8 +129,12 @@
 				86132B15171A5EB700CF26FF /* Debug.m */,
 				8697F2D916F67198008B3014 /* DetailViewController.h */,
 				8697F2DA16F67198008B3014 /* DetailViewController.m */,
+				86132B23171A927600CF26FF /* DebugWindow.h */,
+				86132B24171A927600CF26FF /* DebugWindow.m */,
 				86132B091719B9B700CF26FF /* DetailViewDelegate.h */,
 				86132B0B1719E1FE00CF26FF /* ChangeTypes.h */,
+				86132B20171A8EFE00CF26FF /* DebugView.h */,
+				86132B21171A8EFE00CF26FF /* DebugView.m */,
 				8697F2BF16F67198008B3014 /* Supporting Files */,
 				86132B0E1719E82900CF26FF /* NSSet_makeObjectsPerformSelectorWithChangeTypes.h */,
 				86132B101719E8CF00CF26FF /* NSSet_makeObjectsPerformSelectorWithChangeTypes.m */,
@@ -230,6 +240,8 @@
 				8697F2E316F67539008B3014 /* Tab.m in Sources */,
 				86132B111719E8CF00CF26FF /* NSSet_makeObjectsPerformSelectorWithChangeTypes.m in Sources */,
 				86132B16171A5EB700CF26FF /* Debug.m in Sources */,
+				86132B22171A8EFE00CF26FF /* DebugView.m in Sources */,
+				86132B25171A927600CF26FF /* DebugWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

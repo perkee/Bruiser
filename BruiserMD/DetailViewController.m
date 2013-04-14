@@ -166,7 +166,7 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-  NSLog(@"Start Load");
+  //NSLog(@"Start Load");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -267,13 +267,14 @@
   CGRect urlFrame = self.urlField.frame;
   CGRect moreFrame    = self.moreButton.frame;
   CGRect cancelFrame  = self.cancelButton.frame;
+  /*
   NSLog(@"Unmodified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
         @"Control",[Debug printRect:controlFrame],
         @"URL"    ,[Debug printRect:urlFrame],
         @"more"   ,[Debug printRect:moreFrame],
         @"cancel" ,[Debug printRect:cancelFrame]
         );
-  
+  */
   //resize control view
   controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 70.00; //about width of "Tabs" button
   controlFrame.origin.x = 0.0;
@@ -300,7 +301,7 @@
         @"more"   ,[Debug printRect:moreFrame],
         @"cancel" ,[Debug printRect:cancelFrame]
         );
-
+  
   //navigate to wherever was typed
   if([textField.text length] != 0)
   {

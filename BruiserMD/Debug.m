@@ -19,4 +19,9 @@
 
 }
 
++(NSString *)printPoint:(CGPoint)point
+{
+  return [NSString stringWithFormat:@"point: ( %3.0f, %3.0f)",point.x,point.y];
+}
+
 @end

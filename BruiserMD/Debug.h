@@ -11,5 +11,5 @@
 @interface Debug : NSObject
 
 +(NSString *)printRect:(CGRect)rect;
-
++(NSString *)printPoint:(CGPoint)point;
 @end
