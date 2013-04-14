@@ -86,6 +86,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86132B26171A9D7C00CF26FF /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8697F2D616F67198008B3014 /* MasterViewController.h */,
+				8697F2D716F67198008B3014 /* MasterViewController.m */,
+				8697F2D916F67198008B3014 /* DetailViewController.h */,
+				8697F2DA16F67198008B3014 /* DetailViewController.m */,
+				86132B27171A9D8A00CF26FF /* debug */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		86132B27171A9D8A00CF26FF /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				86132B23171A927600CF26FF /* DebugWindow.h */,
+				86132B24171A927600CF26FF /* DebugWindow.m */,
+				86132B20171A8EFE00CF26FF /* DebugView.h */,
+				86132B21171A8EFE00CF26FF /* DebugView.m */,
+			);
+			name = debug;
+			sourceTree = "<group>";
+		};
 		8697F2AC16F67198008B3014 = {
 			isa = PBXGroup;
 			children = (
@@ -120,21 +143,14 @@
 				8697F2C816F67198008B3014 /* AppDelegate.m */,
 				8697F2D016F67198008B3014 /* MainStoryboard_iPhone.storyboard */,
 				8697F2D316F67198008B3014 /* MainStoryboard_iPad.storyboard */,
-				8697F2D616F67198008B3014 /* MasterViewController.h */,
-				8697F2D716F67198008B3014 /* MasterViewController.m */,
 				8697F2E116F67539008B3014 /* Tab.h */,
 				8697F2E216F67539008B3014 /* Tab.m */,
 				86132B0A1719C84400CF26FF /* TabDelegate.h */,
 				86132B14171A5EB700CF26FF /* Debug.h */,
 				86132B15171A5EB700CF26FF /* Debug.m */,
-				8697F2D916F67198008B3014 /* DetailViewController.h */,
-				8697F2DA16F67198008B3014 /* DetailViewController.m */,
-				86132B23171A927600CF26FF /* DebugWindow.h */,
-				86132B24171A927600CF26FF /* DebugWindow.m */,
+				86132B26171A9D7C00CF26FF /* view */,
 				86132B091719B9B700CF26FF /* DetailViewDelegate.h */,
 				86132B0B1719E1FE00CF26FF /* ChangeTypes.h */,
-				86132B20171A8EFE00CF26FF /* DebugView.h */,
-				86132B21171A8EFE00CF26FF /* DebugView.m */,
 				8697F2BF16F67198008B3014 /* Supporting Files */,
 				86132B0E1719E82900CF26FF /* NSSet_makeObjectsPerformSelectorWithChangeTypes.h */,
 				86132B101719E8CF00CF26FF /* NSSet_makeObjectsPerformSelectorWithChangeTypes.m */,

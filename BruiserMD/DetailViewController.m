@@ -154,7 +154,8 @@
 {
   NSLog(@"Cancel");
   [self.urlField setText:@""];
-  [self textFieldDidEndEditing:self.urlField];
+  //[self textFieldDidEndEditing:self.urlField];
+  [self textFieldShouldReturn:self.urlField];
 }
 
 - (IBAction)more:(id)sender
