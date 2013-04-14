@@ -239,6 +239,7 @@
   
   //resize URL frame
   urlFrame.size.width = controlFrame.size.width - buttonWidth;
+  urlFrame.origin.y = 6;
   [self.urlField setFrame:urlFrame];
   
   //show cancel button
@@ -254,6 +255,7 @@
         @"cancel" ,[Debug printRect:cancelFrame]
         );
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
   const CGFloat buttonWidth  = BUTTONWIDTH;
@@ -290,6 +292,7 @@
   
   //resize URL frame
   urlFrame.size.width = controlFrame.size.width - buttonWidth;
+  urlFrame.origin.y = 6;
   [self.urlField setFrame:urlFrame];
   
   //hide cancel button
