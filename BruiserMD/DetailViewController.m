@@ -7,6 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#define BUTTONWIDTH  ((CGFloat)45.0)
+#define BUTTONHEIGHT ((CGFloat)45.0)
+
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -43,7 +46,6 @@
   {
     _tab = newTab;
     [self.delegates addObject:self.tab];
-    //[self.delegates sayHello];
     // Update the view.
     NSLog(@"setTab");
     //[self configureView];
@@ -61,12 +63,12 @@
 
   if (self.tab)
   {
+    //set delegates
     [self.urlField setDelegate:self];
     [self.mainWebView setDelegate:self];
-    NSLog(@"webvu dgate:  %@ %@",self.mainWebView.delegate,self);
     
     self.urlField.text = [self.tab urlString];
-    NSLog(@"ConfigureView:%@",self.urlField.text);
+    //NSLog(@"ConfigureView:%@",self.urlField.text);
     [self textFieldDidEndEditing:self.urlField];
   }
   else
@@ -93,12 +95,12 @@
 
 - (void)navigate
 {
-  NSLog(@"Navigate:     %@",[self.tab url]);
+  //NSLog(@"Navigate:     %@",[self.tab url]);
   [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[self.tab url]]];
 }
 -(void)navigateWithURL:(NSURL *)url
 {
-  NSLog(@"Navigate url: %@",url);
+  //NSLog(@"Navigate url: %@",url);
   [self.tab setUrl:url];
   [self navigate];
 }
@@ -111,7 +113,7 @@
 
 -(void)navigateWithString:(NSString *)string
 {
-  NSLog(@"Navigate to:  %@",string);
+  //NSLog(@"Navigate to:  %@",string);
   NSString *encoded = [string  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   encoded = [encoded stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSURL *url;
@@ -145,6 +147,19 @@
     url = [NSURL URLWithString:[NSString stringWithFormat:@"https://duckduckgo.com?q=%@",search]];
   }
   [self navigateWithURL:url];
+}
+
+#pragma mark - UI Methods
+-(IBAction)cancel:(id)sender
+{
+  NSLog(@"Cancel");
+  [self.urlField setText:@""];
+  [self textFieldDidEndEditing:self.urlField];
+}
+
+- (IBAction)more:(id)sender
+{
+  NSLog(@"More");
 }
 
 #pragma mark - WebView Delegate Methods
@@ -189,55 +204,103 @@
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+  const CGFloat buttonWidth  = BUTTONWIDTH;
+  const CGFloat buttonHeight = BUTTONHEIGHT;
+  
+  //Hide Normal buttons, only show "Cancel"
   self.navBar.hidesBackButton = YES;
   [self.cancelButton setHidden:NO];
   [self.moreButton setHidden:YES];
-  CGRect controlFrame = self.controlView.frame;
-  NSLog(@"controlFocus: %@",[Debug printRect:controlFrame]);
-  controlFrame.origin.x = 0.0;
-  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width;
-  [self.controlView setFrame:controlFrame];
   
-  CGRect cancelFrame = self.cancelButton.frame;
-  CGRect moreFrame   = self.moreButton.frame;
-  cancelFrame.size.width = moreFrame.size.width;
-  moreFrame.origin.x -= cancelFrame.size.width;
-  moreFrame.size.width = 0.0;
-  [self.moreButton setFrame:moreFrame];
-  [self.cancelButton setFrame:cancelFrame];
+  CGRect controlFrame = self.controlView.frame;
   
   CGRect urlFrame = self.urlField.frame;
-  urlFrame.size.width = controlFrame.size.width - cancelFrame.size.width;
-  NSLog(@"urlFocus:  %@",[Debug printRect:urlFrame]);
+  CGRect moreFrame    = self.moreButton.frame;
+  CGRect cancelFrame  = self.cancelButton.frame;
+  NSLog(@"Unmodified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
+        @"Control",[Debug printRect:controlFrame],
+        @"URL"    ,[Debug printRect:urlFrame],
+        @"more"   ,[Debug printRect:moreFrame],
+        @"cancel" ,[Debug printRect:cancelFrame]
+        );
+  
+  //resize control view
+  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 20; //screen padding
+  controlFrame.origin.x = 0.0;
+  [self.controlView setFrame:controlFrame];
+  
+  //hide more button
+  moreFrame.size.width  = 0;
+  moreFrame.size.height = 0;
+  moreFrame.origin.x    = controlFrame.size.width;
+  [self.moreButton setFrame:moreFrame];
+  
+  //resize URL frame
+  urlFrame.size.width = controlFrame.size.width - buttonWidth;
   [self.urlField setFrame:urlFrame];
+  
+  //show cancel button
+  cancelFrame.size.width  = buttonWidth;
+  cancelFrame.size.height = buttonHeight;
+  cancelFrame.origin.x    = controlFrame.size.width - buttonWidth;
+  [self.cancelButton setFrame:cancelFrame];
+  
+  NSLog(@"Modified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
+        @"Control",[Debug printRect:controlFrame],
+        @"URL"    ,[Debug printRect:urlFrame],
+        @"more"   ,[Debug printRect:moreFrame],
+        @"cancel" ,[Debug printRect:cancelFrame]
+        );
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-  //Hide normal buttons, only show "Cancel"
+  const CGFloat buttonWidth  = BUTTONWIDTH;
+  const CGFloat buttonHeight = BUTTONHEIGHT;
+  //Show normal buttons, hide "Cancel"
   
   self.navBar.hidesBackButton = NO;
   [self.cancelButton setHidden:YES];
   [self.moreButton setHidden:NO];
   
-  CGRect cancelFrame = self.cancelButton.frame;
-  CGRect moreFrame   = self.moreButton.frame;
-  moreFrame.origin.x += cancelFrame.size.width;
-  moreFrame.size.width = cancelFrame.size.width;
-  cancelFrame.size.width = 0.0;
-  [self.moreButton setFrame:moreFrame];
-  [self.cancelButton setFrame:cancelFrame];
-  
-  
   CGRect controlFrame = self.controlView.frame;
-  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 60.00; //about width of "Tabs" button
-  [self.controlView setFrame:controlFrame];
-  //NSLog(@"controlBlur:  %@",[Debug printRect:controlFrame]);
   
   CGRect urlFrame = self.urlField.frame;
-  urlFrame.size.width = controlFrame.size.width - moreFrame.size.width;
-  //NSLog(@"urlBlur:  %@",[Debug printRect:urlFrame]);
+  CGRect moreFrame    = self.moreButton.frame;
+  CGRect cancelFrame  = self.cancelButton.frame;
+  NSLog(@"Unmodified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
+        @"Control",[Debug printRect:controlFrame],
+        @"URL"    ,[Debug printRect:urlFrame],
+        @"more"   ,[Debug printRect:moreFrame],
+        @"cancel" ,[Debug printRect:cancelFrame]
+        );
+  
+  //resize control view
+  controlFrame.size.width = [[UIScreen mainScreen] bounds].size.width - 70.00; //about width of "Tabs" button
+  controlFrame.origin.x = 0.0;
+  [self.controlView setFrame:controlFrame];
+  
+  //move more button
+  moreFrame.size.width  = buttonWidth;
+  moreFrame.size.height = buttonHeight;
+  moreFrame.origin.x    = controlFrame.size.width - buttonWidth;
+  [self.moreButton setFrame:moreFrame];
+  
+  //resize URL frame
+  urlFrame.size.width = controlFrame.size.width - buttonWidth;
   [self.urlField setFrame:urlFrame];
   
+  //hide cancel button
+  cancelFrame.size.width  = 0;
+  cancelFrame.size.height = 0;
+  [self.cancelButton setFrame:cancelFrame];
+  
+  NSLog(@"Modified:\n%@ : %@\n    %@ : %@\n   %@ : %@\n %@ : %@",
+        @"Control",[Debug printRect:controlFrame],
+        @"URL"    ,[Debug printRect:urlFrame],
+        @"more"   ,[Debug printRect:moreFrame],
+        @"cancel" ,[Debug printRect:cancelFrame]
+        );
+
   //navigate to wherever was typed
   if([textField.text length] != 0)
   {

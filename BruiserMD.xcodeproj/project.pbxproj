@@ -12,6 +12,8 @@
 		86132B13171A3D2000CF26FF /* px.gif in Resources */ = {isa = PBXBuildFile; fileRef = 86132B12171A3D2000CF26FF /* px.gif */; };
 		86132B16171A5EB700CF26FF /* Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 86132B15171A5EB700CF26FF /* Debug.m */; };
 		86132B18171A623800CF26FF /* px.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B17171A623800CF26FF /* px.png */; };
+		86132B1B171A847400CF26FF /* blu.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B19171A847400CF26FF /* blu.png */; };
+		86132B1C171A847400CF26FF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 86132B1A171A847400CF26FF /* red.png */; };
 		8697F2B916F67198008B3014 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2B816F67198008B3014 /* UIKit.framework */; };
 		8697F2BB16F67198008B3014 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BA16F67198008B3014 /* Foundation.framework */; };
 		8697F2BD16F67198008B3014 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8697F2BC16F67198008B3014 /* CoreGraphics.framework */; };
@@ -39,6 +41,8 @@
 		86132B14171A5EB700CF26FF /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
 		86132B15171A5EB700CF26FF /* Debug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Debug.m; sourceTree = "<group>"; };
 		86132B17171A623800CF26FF /* px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = px.png; sourceTree = "<group>"; };
+		86132B19171A847400CF26FF /* blu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blu.png; sourceTree = "<group>"; };
+		86132B1A171A847400CF26FF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		8697F2B516F67198008B3014 /* BruiserMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BruiserMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8697F2B816F67198008B3014 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8697F2BA16F67198008B3014 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,8 @@
 		8697F2BF16F67198008B3014 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				86132B19171A847400CF26FF /* blu.png */,
+				86132B1A171A847400CF26FF /* red.png */,
 				86132B12171A3D2000CF26FF /* px.gif */,
 				86132B17171A623800CF26FF /* px.png */,
 				8697F2C016F67198008B3014 /* BruiserMD-Info.plist */,
@@ -205,6 +211,8 @@
 				86132B081719AE0400CF26FF /* style.css in Resources */,
 				86132B13171A3D2000CF26FF /* px.gif in Resources */,
 				86132B18171A623800CF26FF /* px.png in Resources */,
+				86132B1B171A847400CF26FF /* blu.png in Resources */,
+				86132B1C171A847400CF26FF /* red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

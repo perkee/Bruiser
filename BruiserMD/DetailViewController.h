@@ -34,5 +34,7 @@
 -(void)navigateWithString:(NSString *) string;
 
 //UI control methods
+-(IBAction)cancel:(id)sender;
+-(IBAction)more:(id)sender;
 
 @end
